@@ -6,7 +6,7 @@ const TicTacToe: NextComponentType = () => {
 
     return (
         <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' m={2}>
-            Does this render
+            Does this render, Tic-tac-toe
         </Box>
     )
 }
