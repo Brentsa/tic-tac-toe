@@ -6,10 +6,11 @@ interface Square extends Row{
     index: number
 }
 
-const GameSquare: FunctionComponent<Square> = ({index, row}) => {
+const GameSquare: FunctionComponent<Square> = ({index, row, toggleTurn}) => {
 
     function handleClick(): void {
         console.log(`Row: ${row}, Index: ${index}`);
+        toggleTurn();
     }
 
     return (
