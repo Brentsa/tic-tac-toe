@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { NextComponentType } from "next";
 import Title from "./Title";
-import TicTacToe from "./TicTacToe";
+import GameLayout from "./GameLayout";
 
 const MainPage: NextComponentType = () => {
     return (
@@ -11,7 +11,7 @@ const MainPage: NextComponentType = () => {
                     <Title/>
                 </Grid>
                 <Grid item xs={12}>
-                    <TicTacToe/>
+                    <GameLayout/>
                 </Grid>
             </Grid>  
         </Box>

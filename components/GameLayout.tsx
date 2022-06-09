@@ -1,14 +1,17 @@
 import { Box } from "@mui/system"
 import { NextComponentType } from "next"
+import SquareRow from "./SquareRow";
 
 
-const TicTacToe: NextComponentType = () => {
+const GameLayout: NextComponentType = () => {
 
     return (
         <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' m={2}>
-            Does this render, Tic-tac-toe
+            <SquareRow row={0}/>
+            <SquareRow row={1}/>
+            <SquareRow row={2}/>
         </Box>
     )
 }
 
-export default TicTacToe;
+export default GameLayout;
