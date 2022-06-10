@@ -1,19 +1,21 @@
 import { Box } from "@mui/system"
 import { FunctionComponent } from "react"
+import { Row } from "../types"
 import GameSquare from "./GameSquare"
 
-export interface Row {
-    toggleTurn(): void 
-    row: number
-}
-
-const SquareRow: FunctionComponent<Row> = ({row, toggleTurn}) => {
+const SquareRow: FunctionComponent<Row> = ({rowValues, row, toggleTurn}) => {
 
     return (
         <Box display='flex' flexWrap='nowrap'>
-            <GameSquare index={0} row={row} toggleTurn={toggleTurn}/>
-            <GameSquare index={1} row={row} toggleTurn={toggleTurn}/>
-            <GameSquare index={2} row={row} toggleTurn={toggleTurn}/>
+            {rowValues.map((square, i) => 
+                <GameSquare 
+                    index={i} 
+                    row={row} 
+                    value={square} 
+                    toggleTurn={toggleTurn} 
+                    key={i}
+                />
+            )}
         </Box>
     )
 }
