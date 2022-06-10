@@ -31,10 +31,11 @@ const GameLayout: NextComponentType = () => {
             >
                 {gameState.map((row, i) => 
                     <SquareRow 
-                        rowValues={row} 
+                        key={i}
                         row={i} 
                         toggleTurn={toggleTurn} 
-                        key={i}
+                        gameState={gameState}
+                        setGameState={setGameState}
                     />
                 )}
             </Box>

@@ -9,13 +9,16 @@ export type Game = [
     [SquareValue, SquareValue, SquareValue]
 ]
 
-export interface Row {
-    rowValues: SquareValue[]
-    toggleTurn(): void 
+export interface GameItem {
+    toggleTurn: () => void
+    gameState: Game
+    setGameState: (value: Game) => void
+}
+
+export interface Row extends GameItem {
     row: number
 }
 
-export interface Square extends Row{
+export interface Square extends Row {
     index: number
-    value: SquareValue
 }

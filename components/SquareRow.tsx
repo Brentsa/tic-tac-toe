@@ -3,17 +3,18 @@ import { FunctionComponent } from "react"
 import { Row } from "../types"
 import GameSquare from "./GameSquare"
 
-const SquareRow: FunctionComponent<Row> = ({rowValues, row, toggleTurn}) => {
+const SquareRow: FunctionComponent<Row> = ({row, toggleTurn, gameState, setGameState}) => {
 
     return (
         <Box display='flex' flexWrap='nowrap'>
-            {rowValues.map((square, i) => 
+            {gameState[row].map((square, i) => 
                 <GameSquare 
-                    index={i} 
-                    row={row} 
-                    value={square} 
-                    toggleTurn={toggleTurn} 
                     key={i}
+                    index={i} 
+                    row={row}
+                    toggleTurn={toggleTurn}
+                    gameState={gameState}
+                    setGameState={setGameState}
                 />
             )}
         </Box>

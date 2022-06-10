@@ -2,7 +2,7 @@ import { Box } from "@mui/system";
 import { FunctionComponent } from "react";
 import { Square } from "../types";
 
-const GameSquare: FunctionComponent<Omit<Square, 'rowValues'>> = ({index, row, value, toggleTurn}) => {
+const GameSquare: FunctionComponent<Square> = ({index, row, toggleTurn, gameState, setGameState}) => {
 
     function handleClick(): void {
         console.log(`Row: ${row}, Index: ${index}`);
@@ -20,7 +20,7 @@ const GameSquare: FunctionComponent<Omit<Square, 'rowValues'>> = ({index, row, v
             borderRight={index === 2 ? 2 : 0}
             borderBottom={row === 2 ? 2 : 0}
         >
-            {value}
+            {gameState[row][index]}
         </Box>
     );
 }
