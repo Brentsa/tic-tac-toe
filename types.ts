@@ -13,6 +13,7 @@ export interface GameItem {
     toggleTurn: () => void
     gameState: Game
     setGameState: (value: Game) => void
+    currentTurn: number
 }
 
 export interface Row extends GameItem {

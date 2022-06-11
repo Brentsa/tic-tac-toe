@@ -3,7 +3,7 @@ import { FunctionComponent } from "react"
 import { Row } from "../types"
 import GameSquare from "./GameSquare"
 
-const SquareRow: FunctionComponent<Row> = ({row, toggleTurn, gameState, setGameState}) => {
+const SquareRow: FunctionComponent<Row> = ({row, toggleTurn, gameState, setGameState, currentTurn}) => {
 
     return (
         <Box display='flex' flexWrap='nowrap'>
@@ -15,6 +15,7 @@ const SquareRow: FunctionComponent<Row> = ({row, toggleTurn, gameState, setGameS
                     toggleTurn={toggleTurn}
                     gameState={gameState}
                     setGameState={setGameState}
+                    currentTurn={currentTurn}
                 />
             )}
         </Box>

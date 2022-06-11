@@ -22,7 +22,12 @@ const GameLayout: NextComponentType = () => {
             alignItems='center' 
             m={2}
         >
-             <Box 
+            <Box display='flex' gap={3} my={2}>
+                <Typography variant="h4" fontSize={16}>Player 1 - X</Typography>
+                <Typography variant="h4" fontSize={16}>Player 2 - O</Typography>
+            </Box>
+
+            <Box 
                 display='flex' 
                 flexDirection='column' 
                 justifyContent='center' 
@@ -36,10 +41,12 @@ const GameLayout: NextComponentType = () => {
                         toggleTurn={toggleTurn} 
                         gameState={gameState}
                         setGameState={setGameState}
+                        currentTurn={currentTurn}
                     />
                 )}
             </Box>
-            <Box>
+
+            <Box my={2}>
                 <Typography variant="h3" fontSize={20}>Current Turn: Player {currentTurn}</Typography>
             </Box>
         </Box>
