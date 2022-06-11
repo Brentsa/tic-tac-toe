@@ -1,22 +1,22 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FunctionComponent } from "react";
-import { Square } from "../types";
+import { Game, Square, SquareValue } from "../types";
 
-const GameSquare: FunctionComponent<Square> = ({index, row, toggleTurn, gameState, setGameState, currentTurn}) => {
+const GameSquare: FunctionComponent<Square> = ({index, gameState, setGameState, currentTurn, toggleTurn}) => {
 
     function handleClick(): void {
-        console.log(`Row: ${row}, Index: ${index}`);
-
         //if there is already a value in this square, ignore the click
-        if(gameState[row][index]) return;
+        if(gameState[index]) return;
 
-        //Update the game state array with the player's move
-        gameState[row][index] = currentTurn === 1 ? 'X' : 'O';
+        //Determine the current player's game value: X or 0
+        let playerValue: SquareValue = currentTurn === 1 ? 'X' : 'O';
 
-        setGameState(gameState);
+        //Map a new game state array with current values and the new X or 0 depending on whose turn it is
+        const updatedArray: Game = gameState.map((value: SquareValue, i: number) => (i !== index) ? value : playerValue);
 
-        //Change the player turn after the state update
+        //update the game state with new array and toggle the player turn
+        setGameState(updatedArray);
         toggleTurn();
     }
 
@@ -28,11 +28,11 @@ const GameSquare: FunctionComponent<Square> = ({index, row, toggleTurn, gameStat
             onClick={handleClick}
             borderTop={2}
             borderLeft={2}
-            borderRight={index === 2 ? 2 : 0}
-            borderBottom={row === 2 ? 2 : 0}
+            borderRight={index === 2 || index === 5 || index === 8 ? 2 : 0}
+            borderBottom={index === 6 || index === 7 || index === 8 ? 2 : 0}
             sx={{cursor: 'pointer'}}
         >
-            <Typography variant="h1" fontSize={40}>{gameState[row][index]}</Typography>
+            <Typography variant="h1" fontSize={40}>{gameState[index]}</Typography>
         </Box>
     );
 }

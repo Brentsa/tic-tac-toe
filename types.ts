@@ -3,23 +3,19 @@ export type Turn = 1 | 2;
 
 export type SquareValue = '' | 'X' | 'O';
 
-export type Game = [
-    [SquareValue, SquareValue, SquareValue],
-    [SquareValue, SquareValue, SquareValue],
-    [SquareValue, SquareValue, SquareValue]
-]
+export type Game = SquareValue[];
 
 export interface GameItem {
-    toggleTurn: () => void
     gameState: Game
     setGameState: (value: Game) => void
     currentTurn: number
+    toggleTurn: () => void
 }
 
 export interface Row extends GameItem {
-    row: number
+    startingIndex: number
 }
 
-export interface Square extends Row {
+export interface Square extends GameItem {
     index: number
 }
