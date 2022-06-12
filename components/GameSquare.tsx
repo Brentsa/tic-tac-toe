@@ -3,11 +3,11 @@ import { Box } from "@mui/system";
 import { FunctionComponent } from "react";
 import { Game, Square, SquareValue } from "../types";
 
-const GameSquare: FunctionComponent<Square> = ({index, gameState, setGameState, currentTurn, toggleTurn}) => {
+const GameSquare: FunctionComponent<Square> = ({index, gameState, setGameState, currentTurn, toggleTurn, gameMessage}) => {
 
     function handleClick(): void {
-        //if there is already a value in this square, ignore the click
-        if(gameState[index]) return;
+        //if there is already a value in this square or end game message, ignore the click
+        if(gameState[index] || gameMessage) return;
 
         //Determine the current player's game value: X or 0
         let playerValue: SquareValue = currentTurn === 1 ? 'X' : 'O';
@@ -30,7 +30,7 @@ const GameSquare: FunctionComponent<Square> = ({index, gameState, setGameState, 
             borderLeft={2}
             borderRight={index === 2 || index === 5 || index === 8 ? 2 : 0}
             borderBottom={index === 6 || index === 7 || index === 8 ? 2 : 0}
-            sx={{cursor: 'pointer'}}
+            sx={{cursor: gameMessage ? null : 'pointer'}}
         >
             <Typography variant="h1" fontSize={40}>{gameState[index]}</Typography>
         </Box>
