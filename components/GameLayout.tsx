@@ -1,9 +1,10 @@
-import { Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system"
 import { NextComponentType } from "next"
 import { useEffect, useState } from "react";
 import { Game, GameMessage, Turn } from "../types";
 import SquareRow from "./SquareRow";
+import { blue } from "@mui/material/colors";
 
 const win = [
     [0,1,2],
@@ -28,6 +29,8 @@ const GameLayout: NextComponentType = () => {
     const [currentTurn, setCurrentTurn] = useState<Turn>(1);
     const [gameMessage, setGameMessage] = useState<GameMessage>('');
     const [gameState, setGameState] = useState<Game>(['','','','','','','','','']);
+    const [xWins, setXWins] = useState<number>(0);
+    const [oWins, setOWins] = useState<number>(0);
 
     function toggleTurn(): void {
         currentTurn === 1 ? setCurrentTurn(2) : setCurrentTurn(1);
@@ -49,15 +52,22 @@ const GameLayout: NextComponentType = () => {
         return Outcome.Tie;
     }
 
+    function restartGame(){
+        setGameMessage('');
+        setGameState(['','','','','','','','','']);
+    }
+
     useEffect(() => {
         switch(checkWinner()){
             case Outcome.Continue:
                 break;
             case Outcome.PlayerXWin:
                 setGameMessage('X wins!');
+                setXWins(xWins + 1);
                 break;
             case Outcome.PlayerOWin:
                 setGameMessage('O wins!');
+                setOWins(oWins + 1);
                 break;
             case Outcome.Tie:
                 setGameMessage('Tie');
@@ -73,48 +83,70 @@ const GameLayout: NextComponentType = () => {
             alignItems='center' 
             m={2}
         >
-            <Box display='flex' gap={3} my={2}>
-                <Typography variant="h4" fontSize={16}>Player X</Typography>
-                <Typography variant="h4" fontSize={16}>Player O</Typography>
-            </Box>
-
-            <Box 
-                display='flex' 
-                flexDirection='column' 
-                justifyContent='center' 
-                alignItems='center' 
-                m={2}
-            >
-                <SquareRow
-                    startingIndex={0}
-                    gameState={gameState}
-                    setGameState={setGameState}
-                    currentTurn={currentTurn}
-                    toggleTurn={toggleTurn}
-                    gameMessage={gameMessage}
-                />
-                <SquareRow
-                    startingIndex={3}
-                    gameState={gameState}
-                    setGameState={setGameState}
-                    currentTurn={currentTurn}
-                    toggleTurn={toggleTurn}
-                    gameMessage={gameMessage}
-                />
-                <SquareRow
-                    startingIndex={6}
-                    gameState={gameState}
-                    setGameState={setGameState}
-                    currentTurn={currentTurn}
-                    toggleTurn={toggleTurn}
-                    gameMessage={gameMessage}
-                />
-            </Box>
-
+            <Grid container spacing={2}>
+                <Grid xs={4} item></Grid>
+                <Grid xs={4} item>
+                    <Box 
+                        display='flex' 
+                        flexDirection='column' 
+                        justifyContent='center' 
+                        alignItems='center' 
+                        m={2}
+                    >
+                        <SquareRow
+                            startingIndex={0}
+                            gameState={gameState}
+                            setGameState={setGameState}
+                            currentTurn={currentTurn}
+                            toggleTurn={toggleTurn}
+                            gameMessage={gameMessage}
+                        />
+                        <SquareRow
+                            startingIndex={3}
+                            gameState={gameState}
+                            setGameState={setGameState}
+                            currentTurn={currentTurn}
+                            toggleTurn={toggleTurn}
+                            gameMessage={gameMessage}
+                        />
+                        <SquareRow
+                            startingIndex={6}
+                            gameState={gameState}
+                            setGameState={setGameState}
+                            currentTurn={currentTurn}
+                            toggleTurn={toggleTurn}
+                            gameMessage={gameMessage}
+                        />
+                    </Box>
+                </Grid>
+                <Grid xs={4} item>
+                    <Box 
+                        display='flex' 
+                        flexDirection='column' 
+                        justifyContent='center' 
+                        gap={3} 
+                        height='100%' 
+                        width={140} 
+                        bgcolor={blue[500]} 
+                        color='white'
+                        p={3}
+                        borderRadius={3}
+                    >
+                        <Typography variant="h1" fontSize={24} borderBottom={2}>Score</Typography>
+                        <Typography variant="h1" fontSize={40}>{xWins ? `X - ${xWins}` : 'X'}</Typography>
+                        <Typography variant="h1" fontSize={40}>{oWins ? `O - ${oWins}` : 'O'}</Typography>
+                    </Box>
+                </Grid>
+            </Grid>
+            
             <Box my={2}>
-                {gameMessage 
-                    ?<Typography variant="h2" fontSize={26}>{gameMessage}</Typography>
-                    :<Typography variant="h3" fontSize={20}>Current Turn: Player {currentTurn === 1 ? 'X' : 'O'}</Typography>
+                {gameMessage ?
+                    <Box display='flex' flexDirection='column' alignItems='center' gap={4}>
+                        <Typography variant="h2" fontSize={26}>{gameMessage}</Typography>
+                        <Button variant="contained" onClick={restartGame}>Restart Game</Button>
+                    </Box>
+                    :
+                    <Typography variant="h3" fontSize={20}>Current Turn: Player {currentTurn === 1 ? 'X' : 'O'}</Typography>
                 }
             </Box>
         </Box>
