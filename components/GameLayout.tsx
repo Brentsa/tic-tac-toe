@@ -1,11 +1,11 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Box } from "@mui/system"
 import { NextComponentType } from "next"
 import { useEffect, useState } from "react";
 import { Game, GameMessage, Turn } from "../types";
 import SquareRow from "./SquareRow";
-import { blue } from "@mui/material/colors";
 import GameScore from "./GameScore";
+import GameInfo from "./GameInfo";
 
 const win = [
     [0,1,2],
@@ -53,7 +53,7 @@ const GameLayout: NextComponentType = () => {
         return Outcome.Tie;
     }
 
-    function restartGame(){
+    function restartGame(): void {
         setGameMessage('');
         setGameState(['','','','','','','','','']);
     }
@@ -86,6 +86,7 @@ const GameLayout: NextComponentType = () => {
         >
             <Grid container spacing={2}>
                 <Grid xs item></Grid>
+
                 <Grid xs='auto' item>
                     <Box 
                         display='flex' 
@@ -120,23 +121,16 @@ const GameLayout: NextComponentType = () => {
                         />
                     </Box>
                 </Grid>
+
                 <Grid xs item>
                     <GameScore xScore={xWins} oScore={oWins}/>
                 </Grid>
+
+                <Grid xs={12} item>
+                    <GameInfo currentTurn={currentTurn} restartGame={restartGame} gameMessage={gameMessage}/>
+                </Grid>
             </Grid>
-            
-            <Box my={2}>
-                {gameMessage ?
-                    <Box display='flex' flexDirection='column' alignItems='center' gap={4}>
-                        <Typography variant="h2" fontSize={26}>{gameMessage}</Typography>
-                        <Button variant="contained" onClick={restartGame}>Restart Game</Button>
-                    </Box>
-                    :
-                    <Typography variant="h3" fontSize={20}>Current Turn: Player {currentTurn === 1 ? 'X' : 'O'}</Typography>
-                }
-            </Box>
         </Box>
-       
     )
 }
 

@@ -12,6 +12,12 @@ export interface GameScore {
     oScore: number
 }
 
+export interface GameInfo {
+    gameMessage: GameMessage
+    restartGame: () => void
+    currentTurn: number
+}
+
 export interface GameItem {
     gameState: Game
     setGameState: (value: Game) => void
