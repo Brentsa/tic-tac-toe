@@ -1,10 +1,12 @@
-## Tic-Tac-Toe
+# Tic-Tac-Toe
 
-# Description
+## Description
 
 Simple Tic-Tac-Toe game that utilizes Next.js, TypeScript, and MUI. Play with a friend on desktop or mobile and keep score for bragging rights!
 
-# Run Locally
+[Visit Tic-Tac-Toe here.](https://tic-tac-74dryketz-brentsa.vercel.app/)
+
+## Run Locally
 
 Clone the repo and run the development server:
 
