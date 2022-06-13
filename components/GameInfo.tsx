@@ -9,11 +9,11 @@ const GameInfo: FunctionComponent<GameInfo> = ({gameMessage, restartGame, curren
         <Box my={2} display='flex' justifyContent='center'>
             {gameMessage ?
                 <Box display='flex' flexDirection='column' alignItems='center' gap={4}>
-                    <Typography variant="h2" fontSize={26}>{gameMessage}</Typography>
+                    <Typography variant="h2" fontSize={32}>{gameMessage}</Typography>
                     <Button variant="contained" onClick={restartGame}>Restart Game</Button>
                 </Box>
                 :
-                <Typography variant="h3" fontSize={20}>Current Turn: Player {currentTurn === 1 ? 'X' : 'O'}</Typography>
+                <Typography variant="h3" fontSize={22}>Current Turn: Player {currentTurn === 1 ? 'X' : 'O'}</Typography>
             }
         </Box>
     );

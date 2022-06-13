@@ -92,10 +92,10 @@ const GameLayout: NextComponentType = () => {
             alignItems='center' 
             m={2}
         >
-            <Grid container spacing={2}>
+            <Grid container rowSpacing={2} columnSpacing={{xs: 0, sm: 2}}>
                 <Grid xs item></Grid>
 
-                <Grid xs='auto' item>
+                <Grid xs={12} sm='auto' item>
                     <Box 
                         display='flex' 
                         flexDirection='column' 

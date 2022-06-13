@@ -5,7 +5,7 @@ import GameLayout from "./GameLayout";
 
 const MainPage: NextComponentType = () => {
     return (
-        <Box sx={{flexGrow: 1}} mb={3}>
+        <Box sx={{flexGrow: 1}} mb={3} minHeight="80vh">
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Title/>
