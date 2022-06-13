@@ -33,10 +33,12 @@ const GameLayout: NextComponentType = () => {
     const [xWins, setXWins] = useState<number>(0);
     const [oWins, setOWins] = useState<number>(0);
 
+    //flip the turn to the other player
     function toggleTurn(): void {
         currentTurn === 1 ? setCurrentTurn(2) : setCurrentTurn(1);
     }
 
+    //return an Outcome enum dependent on the current game state
     function checkWinner(): Outcome {
         //check for any winning combinations from either X or O
         for(let i = 0; i < win.length; i++){
@@ -53,24 +55,30 @@ const GameLayout: NextComponentType = () => {
         return Outcome.Tie;
     }
 
+    //resart the game by resetting the game states
     function restartGame(): void {
         setGameMessage('');
         setGameState(['','','','','','','','','']);
     }
 
     useEffect(() => {
+        //Check for a winner every time the game state is changed
         switch(checkWinner()){
             case Outcome.Continue:
+                //If there is no winner keep playing
                 break;
             case Outcome.PlayerXWin:
+                //X wins, set the win message and increment X win tally
                 setGameMessage('X wins!');
                 setXWins(xWins + 1);
                 break;
             case Outcome.PlayerOWin:
+                //O wins, set the win message and increment O win tally
                 setGameMessage('O wins!');
                 setOWins(oWins + 1);
                 break;
             case Outcome.Tie:
+                //Set the game message to tie
                 setGameMessage('Tie');
                 break;
         }
@@ -95,30 +103,17 @@ const GameLayout: NextComponentType = () => {
                         alignItems='center' 
                         m={2}
                     >
-                        <SquareRow
-                            startingIndex={0}
-                            gameState={gameState}
-                            setGameState={setGameState}
-                            currentTurn={currentTurn}
-                            toggleTurn={toggleTurn}
-                            gameMessage={gameMessage}
-                        />
-                        <SquareRow
-                            startingIndex={3}
-                            gameState={gameState}
-                            setGameState={setGameState}
-                            currentTurn={currentTurn}
-                            toggleTurn={toggleTurn}
-                            gameMessage={gameMessage}
-                        />
-                        <SquareRow
-                            startingIndex={6}
-                            gameState={gameState}
-                            setGameState={setGameState}
-                            currentTurn={currentTurn}
-                            toggleTurn={toggleTurn}
-                            gameMessage={gameMessage}
-                        />
+                        {[0, 3, 6].map((value, i) => 
+                            <SquareRow
+                                key={i}
+                                startingIndex={value}
+                                gameState={gameState}
+                                setGameState={setGameState}
+                                currentTurn={currentTurn}
+                                toggleTurn={toggleTurn}
+                                gameMessage={gameMessage}
+                            />
+                        )}
                     </Box>
                 </Grid>
 
