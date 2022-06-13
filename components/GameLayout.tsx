@@ -84,8 +84,8 @@ const GameLayout: NextComponentType = () => {
             m={2}
         >
             <Grid container spacing={2}>
-                <Grid xs={4} item></Grid>
-                <Grid xs={4} item>
+                <Grid xs item></Grid>
+                <Grid xs='auto' item>
                     <Box 
                         display='flex' 
                         flexDirection='column' 
@@ -119,22 +119,22 @@ const GameLayout: NextComponentType = () => {
                         />
                     </Box>
                 </Grid>
-                <Grid xs={4} item>
-                    <Box 
-                        display='flex' 
-                        flexDirection='column' 
-                        justifyContent='center' 
-                        gap={3} 
-                        height='100%' 
-                        width={140} 
-                        bgcolor={blue[500]} 
-                        color='white'
-                        p={3}
-                        borderRadius={3}
-                    >
-                        <Typography variant="h1" fontSize={24} borderBottom={2}>Score</Typography>
-                        <Typography variant="h1" fontSize={40}>{xWins ? `X - ${xWins}` : 'X'}</Typography>
-                        <Typography variant="h1" fontSize={40}>{oWins ? `O - ${oWins}` : 'O'}</Typography>
+                <Grid xs item>
+                    <Box height='100%' width='fit-content' display='flex' alignItems='center'>
+                        <Box 
+                            display='flex' 
+                            flexDirection='column' 
+                            justifyContent='center' 
+                            gap={3}
+                            bgcolor={blue[500]} 
+                            color='white'
+                            p={3}
+                            borderRadius={3}
+                        >
+                            <Typography variant="h1" fontSize={24} borderBottom={2}>Score</Typography>
+                            <Typography variant="h1" fontSize={40}>{xWins ? `X - ${xWins}` : 'X'}</Typography>
+                            <Typography variant="h1" fontSize={40}>{oWins ? `O - ${oWins}` : 'O'}</Typography>
+                        </Box>    
                     </Box>
                 </Grid>
             </Grid>
