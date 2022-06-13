@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Game, GameMessage, Turn } from "../types";
 import SquareRow from "./SquareRow";
 import { blue } from "@mui/material/colors";
+import GameScore from "./GameScore";
 
 const win = [
     [0,1,2],
@@ -120,22 +121,7 @@ const GameLayout: NextComponentType = () => {
                     </Box>
                 </Grid>
                 <Grid xs item>
-                    <Box height='100%' width='fit-content' display='flex' alignItems='center'>
-                        <Box 
-                            display='flex' 
-                            flexDirection='column' 
-                            justifyContent='center' 
-                            gap={3}
-                            bgcolor={blue[500]} 
-                            color='white'
-                            p={3}
-                            borderRadius={3}
-                        >
-                            <Typography variant="h1" fontSize={24} borderBottom={2}>Score</Typography>
-                            <Typography variant="h1" fontSize={40}>{xWins ? `X - ${xWins}` : 'X'}</Typography>
-                            <Typography variant="h1" fontSize={40}>{oWins ? `O - ${oWins}` : 'O'}</Typography>
-                        </Box>    
-                    </Box>
+                    <GameScore xScore={xWins} oScore={oWins}/>
                 </Grid>
             </Grid>
             
